@@ -1,0 +1,14 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  overflow-x: hidden; 
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  
+}
+
+.contenedor {
+  max-width: 120rem;
+  margin: 0 auto;
+}
