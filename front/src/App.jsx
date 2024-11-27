@@ -15,6 +15,7 @@ import MainLayout from './components/MainLayout';
 import CompCreateUser from './user/CreateUser';
 import CompEditUser from './user/EditUser';
 import CompIndexBlog from './blog/Index';
+import CompLogin from './auth/login';
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         <Routes>
 
           <Route path='/' element={<CompIndexBlog />} />
+
+          <Route path='/login' element={<CompLogin />} />
 
           <Route path="/blogs" element={<CompShowBlogs />} /> 
           <Route path="/create-blog" element={<CompCreateBlog />} /> 

@@ -1,0 +1,76 @@
+.header-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.blog-header-img {
+    width: 100%;
+    height: auto;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.overlay-text h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.overlay-text p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+
+
+
+
+.contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.nosotros{
+    color: #000;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+}
+
+.wemake {
+    border-radius: 2rem;
+    border: 4px solid transparent;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(135deg, #000, #000); 
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.wemake:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+}
+
+.texto-lorem{
+    margin-top: 2rem;
+    text-align: start;
+}
+
+.desarrollos{
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    color: #000;
+}

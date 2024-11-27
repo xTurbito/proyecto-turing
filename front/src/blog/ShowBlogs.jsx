@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 
 const URL = 'http://localhost:8000/blogs/';
@@ -9,16 +9,55 @@ const CompShowBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();  
 
   useEffect(() => {
     getBlogs();
   }, []);
 
-  // Mostrar todos los blogs
+  // Obtener los blogs
   const getBlogs = async () => {
-    const res = await axios.get(URL);
-    setBlogs(res.data);
-    setFilteredBlogs(res.data);
+    const token = localStorage.getItem('token');  // Obtener el token de localStorage
+
+    if (!token) {
+      console.error('Token no encontrado');
+      navigate('/login');  // Redirigir al login si no hay token
+      return;
+    }
+
+    try {
+      const res = await axios.get(URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Enviar el token en el encabezado Authorization
+        },
+      });
+      setBlogs(res.data);
+      setFilteredBlogs(res.data);
+    } catch (error) {
+      console.error('Error al obtener blogs:', error.response ? error.response.data : error);
+    }
+  };
+
+  // Eliminar un blog
+  const deleteBlog = async (id) => {
+    const token = localStorage.getItem('token');  // Obtener el token de localStorage
+
+    if (!token) {
+      console.error('Token no encontrado');
+      navigate('/login');  // Redirigir al login si no hay token
+      return;
+    }
+
+    try {
+      await axios.delete(`${URL}${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Enviar el token en el encabezado Authorization
+        },
+      });
+      getBlogs();  // Volver a obtener la lista de blogs
+    } catch (error) {
+      console.error('Error al eliminar blog:', error.response ? error.response.data : error);
+    }
   };
 
   // Función de búsqueda
@@ -58,12 +97,6 @@ const CompShowBlogs = () => {
       ),
     },
   ];
-
-  // Eliminar un blog
-  const deleteBlog = async (id) => {
-    await axios.delete(`${URL}${id}`);
-    getBlogs();
-  };
 
   return (
     <div className='container mt-4'>

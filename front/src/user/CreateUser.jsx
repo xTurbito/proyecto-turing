@@ -32,12 +32,35 @@ const CompCreateUser = () => {
   // Función para guardar el usuario
   const store = async (e) => {
     e.preventDefault();
-    await axios.post(URL, { name, lastname, email, password, idRol });
+
+    // Obtener el token de localStorage
+    const token = localStorage.getItem('token');
+
+    // Verificar si el token existe
+    if (!token) {
+      alert('Token no encontrado. Por favor, inicie sesión.');
+      navigate('/login');  // Redirigir al login si no hay token
+      return;
+  }
+
+  try {
+    await axios.post(URL, { name, lastname, email, password, idRol },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`  // Incluir el token en los encabezados
+        }
+      }
+    );
     navigate('/users');
+  } catch (error) {
+    console.error('Error al crear el usuario:', error.response ? error.response.data : error);
+            alert('Error al crear el usuario');
+  }
+
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 contenedor">
       <div className="card shadow-lg">
         <div className="card-body">
           <h3 className="card-title text-center mb-4">Crear un Usuario</h3>

@@ -67,8 +67,28 @@ Asignación de Roles a Usuarios
 Los usuarios pueden tener roles asignados, los cuales son utilizados para gestionar el acceso y los permisos dentro de la aplicación. Esto incluye el acceso para el inicio de sesión, asegurando que solo los usuarios con el rol adecuado puedan acceder a ciertas funciones.
 
 📅 Logros del Proyecto (Día 1)
-Análisis de Requisitos: Se revisaron los requisitos funcionales y técnicos de la aplicación.
-Configuración de la Base de Datos: Se implementaron las tablas necesarias en MySQL, incluyendo la gestión de roles.
-Desarrollo de Funcionalidades CRUD: Se completó la funcionalidad de creación, lectura, actualización y eliminación de usuarios y blogs.
-Integración Backend-Frontend: Se estableció la comunicación entre el servidor y la interfaz mediante APIs.
-Asignación de Roles: Se logró asignar roles a los usuarios para la gestión de accesos y para el inicio de sesión.
+1. Análisis de Requisitos
+Se llevaron a cabo reuniones para revisar y definir los requisitos funcionales y técnicos de la aplicación, identificando las principales necesidades del sistema y los flujos de usuario.
+
+2. Configuración de la Base de Datos
+Se diseñaron e implementaron las tablas necesarias en MySQL, asegurando la correcta estructura de la base de datos para soportar las funcionalidades del proyecto. Esto incluyó la creación de relaciones entre las tablas y la gestión de roles para control de acceso.
+
+3. Desarrollo de Funcionalidades CRUD
+Se desarrollaron las funcionalidades CRUD (Crear, Leer, Actualizar, Eliminar) para los módulos de usuarios y blogs. Estas funcionalidades permiten gestionar de manera eficiente los datos de los usuarios y los blogs dentro de la aplicación.
+
+4. Integración Backend-Frontend
+Se estableció la comunicación entre el servidor y la interfaz de usuario mediante APIs RESTful. Esto permitió que el frontend pudiera interactuar de manera fluida con el backend para obtener, enviar y actualizar datos en tiempo real.
+
+5. Asignación de Roles
+Se implementó un sistema de asignación de roles para los usuarios, lo que facilita la gestión de accesos y permisos dentro de la aplicación. Esto es esencial para garantizar que solo los usuarios autorizados puedan acceder a funciones o áreas específicas del sistema, como el inicio de sesión y la administración.
+
+
+📅 Logros del Proyecto (Día 2)
+1. Implementación de Validación con JWT
+Se incorporó un sistema de autenticación mediante JSON Web Tokens (JWT) para asegurar la validez de las solicitudes. Esto asegura que solo los usuarios autenticados puedan acceder a las rutas protegidas de la aplicación.
+
+2. Uso de Middlewares para Protección de Rutas
+Se implementaron middlewares para proteger las rutas críticas de la aplicación, asegurando que solo los usuarios con roles adecuados puedan acceder a recursos específicos. Esto mejora la seguridad del proyecto y permite un control más granular sobre el acceso.
+
+3. Gestión de Imágenes
+Se trabajó en la carga y manejo de imágenes dentro del proyecto. Se ajustaron las rutas y configuraciones para asegurar que las imágenes puedan ser subidas y gestionadas de manera efectiva. Esto incluye la validación de los formatos y tamaños de archivo antes de la carga.

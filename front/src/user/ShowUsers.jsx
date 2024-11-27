@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 
 const URL = 'http://localhost:8000/users/';
@@ -11,6 +11,7 @@ const CompShowUsers = () => {
   const [roles, setRoles] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();  
 
   useEffect(() => {
     getUsers();
@@ -19,10 +20,54 @@ const CompShowUsers = () => {
 
   // Obtener todos los usuarios
   const getUsers = async () => {
-    const res = await axios.get(URL);
-    setUsers(res.data);
-    setFilteredUsers(res.data);
+    const token = localStorage.getItem('token');
+
+    if(!token){
+      console.error('Token no encontrado');
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const res = await axios.get(URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUsers(res.data);
+      setFilteredUsers(res.data);
+    } catch (error) {
+      console.error('Error al obtener usuarios:', error.response ? error.response.data : error);
+    }
+
+
+  
   };
+
+    // Eliminar un usuario
+    const deleteUser = async (id) => {
+
+      const token = localStorage.getItem('token'); 
+
+      if (!token) {
+        console.error('Token no encontrado');
+        navigate('/login');  // Redirigir al login si no hay token
+        return;
+      }
+
+      try {
+        await axios.delete(`${URL}${id}` , {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        });
+        getUsers();
+      } catch (error) {
+        console.error('Error al eliminar al usuario:', error.response ? error.response.data : error);
+      }
+
+    };
+  
 
   // Obtener todos los roles
   const getRoles = async () => {
@@ -30,11 +75,6 @@ const CompShowUsers = () => {
     setRoles(res.data);
   };
 
-  // Eliminar un usuario
-  const deleteUser = async (id) => {
-    await axios.delete(`${URL}${id}`);
-    getUsers();
-  };
 
   // Función de búsqueda
   const handleSearch = (e) => {

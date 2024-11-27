@@ -20,38 +20,81 @@ const CompEditUser = () => {
         getRoles();
     }, []);
 
+    // Obtener usuario por ID
     const getUserId = async () => {
-        const res = await axios.get(URL + id);
-        setName(res.data.name);
-        setLastName(res.data.lastname);
-        setEmail(res.data.email);
-        setIdRol(res.data.idRol);
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            alert('Token no encontrado. Por favor, inicie sesión');
+            navigate('/login');
+            return;
+        }
+
+        try {
+            const res = await axios.get(URL + id, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setName(res.data.name);
+            setLastName(res.data.lastname);
+            setEmail(res.data.email);
+            setIdRol(res.data.idRol);
+        } catch (error) {
+            console.error('Error al obtener el usuario:', error.response ? error.response.data : error);
+        }
     };
 
+    // Obtener todos los roles
     const getRoles = async () => {
-        const res = await axios.get(ROLES_URL);
-        setRoles(res.data);
+        try {
+            const res = await axios.get(ROLES_URL);
+            setRoles(res.data);
+        } catch (error) {
+            console.error('Error al obtener los roles:', error.response ? error.response.data : error);
+        }
     };
 
+    // Actualizar usuario
     const update = async (e) => {
         e.preventDefault();
+
+        // Obtener el token
+        const token = localStorage.getItem('token');
+
+        // Verificar si existe el token
+        if (!token) {
+            alert('Token no encontrado. Por favor, inicie sesión');
+            navigate('/login');
+            return;
+        }
+
         const updatedUser = {
-            name, 
-            lastname, 
-            email, 
-            idRol
+            name,
+            lastname,
+            email,
+            idRol,
         };
+
         // Solo incluir la contraseña si el usuario ingresó una nueva
         if (password.trim()) {
             updatedUser.password = password;
         }
 
-        await axios.put(URL + id, updatedUser);
-        navigate('/users');
+        try {
+            await axios.put(URL + id, updatedUser, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            navigate('/users');
+        } catch (error) {
+            console.error('Error al actualizar el usuario:', error.response ? error.response.data : error);
+        }
     };
 
     return (
-        <div className="card">
+        <div className="card contenedor mt-5">
             <div className="card-body">
                 <h3>Editar Usuario</h3>
                 <form onSubmit={update}>
