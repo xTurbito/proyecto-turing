@@ -116,3 +116,6 @@ https://nodejs.org/en/
 5.- Entrar a la carpeta front con "cd front" e instalar las dependcias "npm install"
 6.- Levantr el front "npm run dev"
 
+6. CREDENCIAL DE INICIO DE SESIÓN
+Usuario: walther@gmail.com  
+Pass: 12345678
