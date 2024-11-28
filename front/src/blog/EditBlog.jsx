@@ -7,9 +7,8 @@ const URL = 'http://localhost:8000/blogs/';
 const CompEditBlog = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [image, setImage] = useState(null);  
-    const [imagePreview, setImagePreview] = useState(null);  
-    const [existingImage, setExistingImage] = useState(null);  
+    const [image, setImage] = useState(null);
+    const [currentImage, setCurrentImage] = useState(''); 
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -17,10 +16,8 @@ const CompEditBlog = () => {
     const update = async (e) => {
         e.preventDefault();
 
-        // Obtener el token
         const token = localStorage.getItem('token');
 
-        // Verificar si existe el token
         if (!token) {
             alert('Token no encontrado. Por favor, inicie sesión');
             navigate('/login');
@@ -30,16 +27,13 @@ const CompEditBlog = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
-        
-        // Solo añadir la imagen si existe una nueva imagen
-        if (image) formData.append('image', image);  
+        if (image) formData.append('image', image); 
 
         try {
-            // Actualizar el blog con el token
             await axios.put(URL + id, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',  
+                    'Content-Type': 'multipart/form-data',
                 },
             });
 
@@ -51,7 +45,6 @@ const CompEditBlog = () => {
     };
 
     useEffect(() => {
-        // Verificar token antes de cargar los datos del blog
         const token = localStorage.getItem('token');
         if (!token) {
             alert('Token no encontrado. Por favor, inicie sesión');
@@ -71,9 +64,11 @@ const CompEditBlog = () => {
             });
             setTitle(res.data.title);
             setContent(res.data.content);
-            // Establecer la vista previa de la imagen si ya existe
-            if (res.data.imageUrl) {
-                setExistingImage(`http://localhost:8000${res.data.imageUrl}`);  
+            
+            
+            const imagePath = res.data.image; 
+            if (imagePath) {
+                setCurrentImage(`http://localhost:8000${imagePath}`); 
             }
         } catch (error) {
             console.error('Error al obtener el blog:', error);
@@ -84,13 +79,6 @@ const CompEditBlog = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
-        // Generar una vista previa de la imagen seleccionada
-        if (file) {
-            const previewUrl = URL.createObjectURL(file);
-            setImagePreview(previewUrl);
-        } else {
-            setImagePreview(null);  
-        }
     };
 
     return (
@@ -117,6 +105,18 @@ const CompEditBlog = () => {
                         />
                     </div>
 
+                    {currentImage && (
+                        <div className="mb-3">
+                            <label className="form-label">Imagen Actual</label>
+                            <img
+                                src={currentImage}
+                                alt="Imagen actual del blog"
+                                className="img-thumbnail mb-2"
+                                style={{ width: '200px', height: 'auto' }}
+                            />
+                        </div>
+                    )}
+
                     <div className="mb-3">
                         <label className="form-label">Imagen</label>
                         <input
@@ -126,30 +126,7 @@ const CompEditBlog = () => {
                         />
                     </div>
 
-                    {imagePreview && (
-                        <div className="mb-3">
-                            <label className="form-label">Vista previa de la imagen</label>
-                            <img
-                                src={imagePreview}
-                                alt="Vista previa"
-                                style={{ width: '100px', height: 'auto' }}
-                                className="img-thumbnail"
-                            />
-                        </div>
-                    )}
-                    {existingImage && !imagePreview && (
-                        <div className="mb-3">
-                            <label className="form-label">Imagen Actual</label>
-                            <img
-                                src={existingImage}
-                                alt="Imagen actual"
-                                style={{ width: '100px', height: 'auto' }}
-                                className="img-thumbnail"
-                            />
-                        </div>
-                    )}
-
-                    <button type="submit" className="btn btn-primary">Guardar</button>
+                    <button type="submit" className="btn btn-dark">Guardar</button>
                 </form>
             </div>
         </div>

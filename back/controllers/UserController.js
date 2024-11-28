@@ -1,9 +1,6 @@
 //Importar el Modelo
 import UserModel from "../models/UserModel.js";
 
-//Importar JWT
-import jwt from 'jsonwebtoken';
-
 //Hasheo Passwords 
 import bcrypt from 'bcryptjs';
 

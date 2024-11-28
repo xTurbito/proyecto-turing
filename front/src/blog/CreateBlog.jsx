@@ -9,7 +9,7 @@ const CompCreateBlog = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState(null);  // Cambiado a null para manejar archivos
+    const [image, setImage] = useState(null);  
     const [idVendedor, setIdVendedor] = useState('');
     const navigate = useNavigate();
 
@@ -101,7 +101,7 @@ const CompCreateBlog = () => {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary">Guardar</button>
+                    <button type="submit" className="btn btn-dark">Guardar</button>
                 </form>
             </div>
         </div>

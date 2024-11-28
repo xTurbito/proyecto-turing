@@ -21,7 +21,7 @@ const CompLogin = () => {
 
       localStorage.setItem('token', token);
 
-      navigate('/blogs');
+      navigate('/welcome');
     } catch (error) {
       setErrorMessage('Credenciales incorrectas o error en el servidor');
       console.error(error);

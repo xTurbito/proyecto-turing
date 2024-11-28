@@ -5,7 +5,7 @@ import db from '../database/db.js';
 import { DataTypes } from 'sequelize';
 
 
-const UserModel = db.define('users', {
+const userModel = db.define('users', {
     name: {type: DataTypes.STRING},
     lastname: {type: DataTypes.STRING},
     email: {type: DataTypes.STRING},
@@ -14,4 +14,4 @@ const UserModel = db.define('users', {
 })
 
 
-export default UserModel;
+export default userModel;

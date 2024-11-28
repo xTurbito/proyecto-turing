@@ -21,13 +21,26 @@ const CompCreateUser = () => {
 
   // Función para obtener los roles
   const getRoles = async () => {
-    try {
-      const res = await axios.get(ROLES_URL);
-      setRoles(res.data); 
-    } catch (error) {
-      console.error('Error al obtener los roles:', error);
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        alert('Token no encontrado. Por favor, inicie sesión');
+        navigate('/login');
+        return;
     }
-  };
+
+    try {
+        const res = await axios.get(ROLES_URL, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setRoles(res.data);
+    } catch (error) {
+        console.error('Error al obtener los roles:', error.response ? error.response.data : error);
+    }
+};
+
 
   // Función para guardar el usuario
   const store = async (e) => {

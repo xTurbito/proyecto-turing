@@ -11,7 +11,7 @@
 
 .overlay-text {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
@@ -30,7 +30,11 @@
 }
 
 
-
+.carousel-item img{
+  object-fit: cover; 
+  height: 100vh; 
+  width: 100%¿v; 
+}
 
 
 .contenedor {
@@ -43,9 +47,6 @@
     color: #000;
     margin-top: 10rem;
     margin-bottom: 10rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 5rem;
 }
 
 .wemake {
@@ -74,3 +75,23 @@
     margin-bottom: 10rem;
     color: #000;
 }
+
+.socios{
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    color: #000;
+}
+
+.card-img-top {
+    height: 30rem;          
+    object-fit: cover;      
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-body {
+    flex-grow: 1;           
+  }

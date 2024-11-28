@@ -11,6 +11,9 @@ import blogRoutes from './routes/blogRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import rolRoutes from './routes/rolRoutes.js';
 import authRoutes from './routes/authRoutes.js'; 
+import slidePrincipalRoute from './routes/slidePrincipalRoute.js'
+import slideDesarrollosRoute from './routes/slideDesarrollosRoute.js'
+import sociosRoutes from './routes/sociosRoutes.js'
 
 dotenv.config(); 
 
@@ -29,6 +32,9 @@ app.use('/blogs', blogRoutes);
 app.use('/users', userRoutes);
 app.use('/roles', rolRoutes);
 app.use('/auth', authRoutes); 
+app.use('/slide-principal', slidePrincipalRoute)
+app.use('/slide-desarrollos', slideDesarrollosRoute);
+app.use('/socios', sociosRoutes);
 
 // Intentar la conexión a la base de datos
 try {

@@ -35,11 +35,32 @@ const Header = () => {
             </li>
             )}
         
-            {token && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/blogs">Blogs</Link> 
-              </li>
+                {token && (
+                <li className="nav-item dropdown">
+                  <a 
+                    className="nav-link dropdown-toggle" 
+                    href="#" 
+                    role="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                  >
+                    Landing
+                  </a>
+                  <ul className="dropdown-menu"> 
+                  
+                    <li>
+                      <Link className="dropdown-item fs-6" to="/slide-principal">Slide Principal</Link> 
+                    </li>
+                    <li>
+                      <Link className="dropdown-item fs-6" to="/slide-desarrollos">Slide Desarrollos</Link> 
+                    </li>
+                    <li>
+                      <Link className="dropdown-item fs-6" to="/socios">Socios</Link> 
+                    </li>
+                  </ul>
+                </li>
             )}
+
            
             {token && (
               <li className="nav-item">

@@ -11,10 +11,10 @@ const storage = multer.diskStorage({
     if (!fs.existsSync(uploadDir)){
         fs.mkdirSync(uploadDir, { recursive: true });
     }
-    cb(null, uploadDir); // Carpeta de destino para las imágenes
+    cb(null, uploadDir); 
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Nombre único del archivo
+    cb(null, Date.now() + path.extname(file.originalname)); 
   }
 });
 
@@ -45,7 +45,7 @@ export const getBlog = async (req, res) => {
       return res.status(404).json({ message: "Blog no encontrado" });
     }
 
-    // Si existe una imagen, se agrega la URL completa de la imagen
+    
     if (blog.image) {
       blog.imageUrl = `http://localhost:8000${blog.image}`;  // URL completa
       console.log('URL de la imagen:', blog.imageUrl);
@@ -98,7 +98,6 @@ export const updateBlog = async (req, res) => {
       }
 
       const { title, content, price, idVendedor } = req.body;
-      // Si no se carga una nueva imagen, mantener la imagen actual
       const imageUrl = req.file ? `/uploads/${req.file.filename}` : blog.image;
 
       // Actualizar el blog en la base de datos

@@ -92,3 +92,27 @@ Se implementaron middlewares para proteger las rutas críticas de la aplicación
 
 3. Gestión de Imágenes
 Se trabajó en la carga y manejo de imágenes dentro del proyecto. Se ajustaron las rutas y configuraciones para asegurar que las imágenes puedan ser subidas y gestionadas de manera efectiva. Esto incluye la validación de los formatos y tamaños de archivo antes de la carga.
+
+📅 Logros del Proyecto (Día 3)
+
+1. Trabajo en el Front-End: Carga de Imágenes y Datos del Backend
+Se integró la funcionalidad para cargar imágenes y mostrar datos desde el backend al front-end. Esto incluyó la implementación de formularios para permitir la carga de imágenes y la actualización de datos de manera dinámica. Se aseguraron de que los datos del servidor se obtuvieran correctamente y se presentaran en la interfaz de usuario.
+
+2. Mejora en la Responsividad de la Aplicación
+Se trabajó en hacer que la aplicación sea completamente responsiva, adaptándose a diferentes tamaños de pantalla. Esto incluyó ajustes en los estilos CSS y el uso de frameworks como Bootstrap para garantizar que la interfaz de usuario fuera fluida y se viera bien tanto en dispositivos móviles como en escritorio.
+
+3. Optimización de la Experiencia de Usuario
+Se implementaron mejoras para hacer la experiencia de usuario más amigable. Esto incluye la validación de la carga de imágenes en tiempo real, la actualización de datos de manera eficiente sin recargar la página, y la mejora de la presentación de los datos cargados, asegurando una experiencia fluida y sin interrupciones.
+
+
+4. INSTALAR NODE JS
+https://nodejs.org/en/
+
+5. LEVANTAR PROYECTO
+1.- Clonar el repositorio
+2.- Importar la bd en mysql
+3.- Entrar a la carpeta back con "cd back" e instalar las dependencias "npm install"
+4.- Levantar el back con "nodemon app"
+5.- Entrar a la carpeta front con "cd front" e instalar las dependcias "npm install"
+6.- Levantr el front "npm run dev"
+

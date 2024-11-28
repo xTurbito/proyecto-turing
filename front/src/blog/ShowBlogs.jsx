@@ -87,10 +87,10 @@ const CompShowBlogs = () => {
       name: 'Acciones',
       cell: row => (
         <>
-          <Link to={`/edit-blog/${row.id}`} className='btn btn-info btn-sm me-2'>
+          <Link to={`/edit-blog/${row.id}`} className='btn '>
             <i className="fa-solid fa-pen-to-square"></i>
           </Link>
-          <button onClick={() => deleteBlog(row.id)} className='btn btn-danger btn-sm'>
+          <button onClick={() => deleteBlog(row.id)} className='btn  '>
             <i className="fa-solid fa-trash"></i>
           </button>
         </>
@@ -101,7 +101,7 @@ const CompShowBlogs = () => {
   return (
     <div className='container mt-4'>
       <div className='card shadow-sm'>
-        <div className='card-header bg-primary text-white'>
+        <div className='card-header bg-dark text-white'>
           <h3 className='mb-0'>Gestión de Blogs</h3>
         </div>
         <div className='card-body'>
