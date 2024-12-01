@@ -32,7 +32,7 @@ CRUD Implementado
 Se desarrolló un CRUD completo (Crear, Leer, Actualizar y Eliminar) tanto para los blogs como para los usuarios, permitiendo una gestión eficiente de la información.
 
 
-¡Entendido! Aquí tienes el README actualizado para incluir la funcionalidad de roles asignados a los usuarios para el inicio de sesión:
+
 
 🚀 Prueba Técnica - Turing IA
 Este repositorio contiene la solución para la prueba técnica solicitada por la compañía Turing IA. Es un proyecto fullstack que incluye tanto la gestión de datos en el backend como una interfaz de usuario interactiva en el frontend.
